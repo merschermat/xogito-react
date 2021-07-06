@@ -36,12 +36,10 @@ const ProjectForm = () => {
     const validationSchema = yup.object({
         name: yup
             .string()
-            // .email('Enter a valid email')
             .required('Name is required'),
         email: yup
             .string()
             .email('Insert a valid email')
-            // .min(8, 'Password should be of minimum 8 characters length')
             .required('Email is required')
             .test('email-exists', 'Email already used', val => {
                 let exists = users.find(e => e.email.toLowerCase() === val?.toLocaleLowerCase())
