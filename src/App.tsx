@@ -13,7 +13,6 @@ function App() {
 
 
   useEffect(() => {
-    console.log('a')
     //@ts-ignore
     Projects.map(proj => proj.owner = Users.find(user => user.id == proj.owner))
     //@ts-ignore

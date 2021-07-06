@@ -69,7 +69,6 @@ const ProjectForm = (editingProject = { id: 0, name: '', description: '', owner:
             let newProject = { ...e }
             newProject.id = newId;
             newProject.owner = getUser(e.owner)
-            console.log(newProject)
 
             dispatch(addProject(newProject))
         }
@@ -88,7 +87,7 @@ const ProjectForm = (editingProject = { id: 0, name: '', description: '', owner:
         >
             {({ errors, touched, handleChange, values }) => (
                 <Form>
-                    <h2>New Project</h2>
+                    <h2>{editingProject.id == 0 ? 'New Project' : 'Edit Project'}</h2>
                     <TextField
                         className={classes.field}
                         fullWidth

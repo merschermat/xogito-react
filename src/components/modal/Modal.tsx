@@ -46,7 +46,6 @@ export default function WithTransitionsModal(component: any, buttonLabel: string
         <>
             <Button className={classes.button}
                 color="primary" onClick={() => {
-                    console.log('sssssssss')
                     setModalOpen(true)
                 }} variant="contained">
                 {buttonLabel}
