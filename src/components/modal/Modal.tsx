@@ -28,6 +28,10 @@ const useStyles = makeStyles((theme: Theme) =>
         selectEmpty: {
             marginTop: theme.spacing(2),
         },
+        button: {
+            marginRight: '10px',
+            marginLeft: '10px'
+        }
     }),
 );
 
@@ -40,10 +44,11 @@ export default function WithTransitionsModal(component: any, buttonLabel: string
 
     return (
         <>
-            <Button color="primary" onClick={() => {
-                console.log('sssssssss')
-                setModalOpen(true)
-            }} variant="contained">
+            <Button className={classes.button}
+                color="primary" onClick={() => {
+                    console.log('sssssssss')
+                    setModalOpen(true)
+                }} variant="contained">
                 {buttonLabel}
             </Button>
             <Modal

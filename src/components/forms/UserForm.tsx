@@ -11,8 +11,25 @@ import {
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import User from '../../interfaces/User';
 
+import { makeStyles, Theme, createStyles } from '@material-ui/core';
 
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        label: {
+            marginTop: '15px'
+        },
+        field: {
+            marginBottom: '5px'
+        },
+        button: {
+            marginTop: '15px'
+
+        }
+    }),
+);
 const ProjectForm = () => {
+    const classes = useStyles();
+
     const dispatch = useAppDispatch();
     const users = useAppSelector(selectUser);
 
@@ -54,9 +71,12 @@ const ProjectForm = () => {
             }}
             validationSchema={validationSchema}
         >
+
             {({ errors, touched, handleChange, values }) => (
                 <Form>
+                    <h2>New User</h2>
                     <TextField
+                        className={classes.field}
                         fullWidth
                         id="name"
                         name="name"
@@ -68,6 +88,7 @@ const ProjectForm = () => {
                     />
 
                     <TextField
+                        className={classes.field}
                         fullWidth
                         id="email"
                         name="email"
@@ -78,7 +99,7 @@ const ProjectForm = () => {
                         helperText={touched.email && errors.email}
                     />
 
-                    <Button color="primary" variant="contained" fullWidth type="submit">
+                    <Button className={classes.button} color="primary" variant="contained" fullWidth type="submit">
                         Create User
                     </Button>
                 </Form>)}

@@ -70,7 +70,9 @@ export function Project() {
   return (
     <div>
       <div>
-        <TextField id="filled-search" label="Search field" type="search" value={keyword} onChange={(e) => setKeyword(e.target.value)} variant="filled" />
+        <h1>Projects</h1>
+
+        <TextField id="filled-search" label="Search field" fullWidth type="search" value={keyword} onChange={(e) => setKeyword(e.target.value)} variant="filled" />
 
         <TableContainer>
           <Table stickyHeader aria-label="sticky table">
@@ -90,18 +92,17 @@ export function Project() {
             <TableBody>
               {projectsFiltered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                  <TableRow hover role="checkbox" tabIndex={1} key={row.id}>
                     {columns.map((column) => {
                       const value = row[column.id];
-                      console.log(row)
                       return (
                         column.id !== 'action' ?
                           <TableCell key={column.id} align={column.align}>
-                            {value}
+                            {column.id !== 'owner' ? value : value.email}
                           </TableCell>
                           :
                           <TableCell key={column.id} align={column.align}>
-                            <ModalProject project={row} />
+                            <ModalProject project={{ ...row, owner: row.owner.id }} />
                           </TableCell>
                       );
                     })}

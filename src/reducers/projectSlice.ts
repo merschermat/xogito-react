@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 import Project from '../interfaces/Project';
-import Projects from '../projects.json'
 
 export interface ProjectState {
   value: Array<Project>;
@@ -9,7 +8,7 @@ export interface ProjectState {
 }
 
 const initialState: ProjectState = {
-  value: Projects,
+  value: [],
   status: 'idle',
 };
 
@@ -24,6 +23,9 @@ export const projectSlice = createSlice({
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
+    iniateValue: (state, action: PayloadAction<Project[]>) => {
+      state.value = action.payload;
+    },
     // increment: (state) => {
     //   // Redux Toolkit allows us to write "mutating" logic in reducers. It
     //   // doesn't actually mutate the state because it uses the Immer library,
@@ -36,6 +38,7 @@ export const projectSlice = createSlice({
     // },
     // Use the PayloadAction type to declare the contents of `action.payload`
     addProject: (state, action: PayloadAction<Project>) => {
+      console.log(action.payload)
       state.value.push(action.payload);
     },
     editProject: (state, action: PayloadAction<Project>) => {
@@ -59,7 +62,7 @@ export const projectSlice = createSlice({
   // },
 });
 
-export const { addProject, editProject } = projectSlice.actions;
+export const { iniateValue, addProject, editProject } = projectSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
